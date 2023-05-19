@@ -1,34 +1,27 @@
 import React, { useState } from 'react';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { useAuth } from '../../context/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
-  const auth = useAuth()
-
+  const auth = useAuth();
+  const navigate = useNavigate(); // Obtener la función de navegación
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [redirectToHome, setRedirectToHome] = useState(false);
 
   const handleLogin = (e) => {
-    e.preventDefault()
-    auth.login(email, password)
+    e.preventDefault();
+    auth.login(email, password);
     setEmail('');
     setPassword('');
-    setRedirectToHome(true);
-  }
+    navigate('/'); // Redirigir a la página de inicio (Home) después de iniciar sesión
+  };
   const handleLoginGoogle = (e) => {
-    e.preventDefault()
-    auth.loginWithGoogle()
-    setEmail('');
-    setPassword('');
-
-  }
-
-  if (redirectToHome) {
-    return <Navigate to="/" replace />;
-  }
+    e.preventDefault();
+    auth.loginWithGoogle();
+    navigate('/');
+  };
 
   return (
     <>
@@ -61,8 +54,8 @@ export const Login = () => {
             ¿No tienes una cuenta? <a style={{ color: 'white' }} href="/registro">Regístrate aquí</a>
           </div>
         </form>
-
       </div>
     </>
   );
 };
+

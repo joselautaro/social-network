@@ -29,7 +29,7 @@ export const Home = () => {
   if (!user) {
     return (
       <div style={{ color: 'white' }}>
-        <h1>Home</h1>
+        {/* <h1>Home</h1> */}
         <p>Para usar este sitio, necesitas iniciar sesión.</p>
       </div>
     );
@@ -37,7 +37,7 @@ export const Home = () => {
 
   return (
     <div style={{ color: 'white' }}>
-      <h1>Home</h1>
+      {/* <h1>Home</h1> */}
       <h3>
         Te damos la bienvenida: <p>{user.displayName}</p>
       </h3>

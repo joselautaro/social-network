@@ -1,19 +1,25 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { useAuth } from '../../context/AuthContext';
 
 export const Register = () => {
     const auth = useAuth()
+    const navigate = useNavigate();
     const [emailRegister, setEmailRegister] = useState('');
+    const [nameRegister, setNameRegister] = useState('')
     const [passwordRegister, setPasswordRegister] = useState('');
 
     const handleRegister = (e) => {
         e.preventDefault()
-        auth.register(emailRegister, passwordRegister)
+        auth.register(nameRegister, emailRegister, passwordRegister)
+        navigate('/');
     };
+    
     const handleLoginGoogle = async (e) => {
         e.preventDefault()
         await auth.loginWithGoogle()
+        navigate('/')
     }
 
 
@@ -26,6 +32,12 @@ export const Register = () => {
                         <AiFillGoogleCircle size={20} style={{ marginRight: '10px' }} />
                         Iniciar sesión con Google
                     </button>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                        Nombre
+                    </label>
+                    <input type="name" className="form-control" id="name" onChange={(e) => setNameRegister(e.target.value)} style={{ color: 'black' }} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">
@@ -41,7 +53,7 @@ export const Register = () => {
                 </div>
                 <div className="mb-3">
                     <button type="submit" className="btn btn-primary" onClick={(e) => handleRegister(e)}>
-                        Iniciar sesión
+                        Registrarme
                     </button>
                 </div>
             </form>

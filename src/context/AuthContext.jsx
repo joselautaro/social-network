@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
             register,
             login,
             loginWithGoogle,
-            logout
+            logout,
         }}>
             {children}
         </authContext.Provider>
